@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для лучшей подруги 👯‍♀️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Pacifico&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fff1eb 0%, #ace0f9 100%);
+            font-family: 'Nunito', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 90%;
+            width: 340px;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #ff6b6b;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+
+        .gif-container img {
+            width: 100%;
+            max-width: 220px;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            position: relative;
+            min-height: 50px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        #yes-btn {
+            background-color: #ff6b6b;
+            color: white;
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+        }
+
+        #yes-btn:hover {
+            transform: scale(1.05);
+            background-color: #ff5252;
+        }
+
+        #no-btn {
+            background-color: #fff;
+            color: #333;
+            border: 2px solid #ddd;
+            position: relative; 
+        }
+
+        #success-screen {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-screen">
+        <div class="gif-container">
+            <img src="https://media.tenor.com/M0t0qV2F29UAAAAi/cat-flower.gif" alt="Cat Asking">
+        </div>
+        <h1>Будешь моей валентинкой? 🥺</h1>
+        <div class="btn-group">
+            <button id="yes-btn">Да</button>
+            <button id="no-btn">Нет</button>
+        </div>
+    </div>
+
+    <div class="container" id="success-screen">
+        <div class="gif-container">
+            <img src="https://media.tenor.com/b-p_m8jWlBQAAAAi/mochi-cat.gif" alt="Dancing Cats">
+        </div>
+        <h1>Че ряльно будешь? ❤️</h1>
+        <p>Клянусь ты самая красивая, милая в мире! Появление в моей жизни сделало её намного насыщеннее! 👯‍♀️✨</p>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const mainScreen = document.getElementById('main-screen');
+        const successScreen = document.getElementById('success-screen');
+
+        const phrases = [
+            "Нет",
+            "Эй, ты чего?",
+            "Не вредничай!",
+            "С меня вкусняшки!",
+            "Ты точно уверена?",
+            "Ну по-братски...",
+            "Не будь букой!",
+            "Я всё равно не отстану",
+            "Жми ДА уже!",
+            "😈"
+        ];
+
+        let phraseIndex = 0;
+
+        function moveButton() {
+  
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            noBtn.innerText = phrases[phraseIndex];
+
+            const maxWidth = window.innerWidth - noBtn.offsetWidth;
+            const maxHeight = window.innerHeight - noBtn.offsetHeight;
+
+            const randomX = Math.random() * maxWidth;
+            const randomY = Math.random() * maxHeight;
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        noBtn.addEventListener('click', moveButton);
+
+        yesBtn.addEventListener('click', () => {
+            mainScreen.style.display = 'none';
+            successScreen.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
